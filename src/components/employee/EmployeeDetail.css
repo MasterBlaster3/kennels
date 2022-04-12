@@ -1,0 +1,9 @@
+#root > .card {
+    max-width: 400px;
+    margin: 10px auto;
+  }
+  
+  .employeeImage {
+    width: 45%;
+    height: 15%;
+  }

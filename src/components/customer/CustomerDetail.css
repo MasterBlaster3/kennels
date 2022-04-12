@@ -1,0 +1,10 @@
+#root > .card {
+    max-width: 400px;
+    margin: 10px auto;
+  }
+  
+  .customerPhoto {
+    width: 45%;
+    height: 15%;
+    justify-content: center;
+  }
