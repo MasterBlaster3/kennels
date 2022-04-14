@@ -1,29 +1,72 @@
 import React from "react";
-import {Link} from "react-router-dom"
-import "./NavBar.css"
+import { Link, useNavigate } from "react-router-dom";
+import "./NavBar.css";
 
-export const NavBar = () =>(
+export const NavBar = ({ clearUser, isAuthenticated }) => {
+  const navigate = useNavigate();
 
-    <>
-        <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/">NSS Kennels</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/locations">Locations</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/animals">Animals</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/customers">Customers</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/employees">Employees</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/madlib">Madlib</Link>
-            </li>
-        </ul>
-    </>
-)
+  const handleLogout = () => {
+    clearUser();
+    navigate("/");
+  };
+
+  return (
+    <ul className="navbar">
+      <li className="navbar__item">
+        <Link className="navbar__link" to="/">
+          {" "}
+          Home{" "}
+        </Link>
+      </li>
+
+      {isAuthenticated && (
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/animals">
+            {" "}
+            Animals{" "}
+          </Link>
+        </li>
+      )}
+
+      <li className="navbar__item">
+        <Link className="navbar__link" to="/locations">
+          {" "}
+          Locations{" "}
+        </Link>
+      </li>
+
+      {isAuthenticated && (
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/employees">
+            {" "}
+            Employees{" "}
+          </Link>
+        </li>
+      )}
+
+      {isAuthenticated && (
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/customers">
+            {" "}
+            Customers{" "}
+          </Link>
+        </li>
+      )}
+
+      {isAuthenticated ? (
+        <li className="navbar__item" onClick={handleLogout}>
+          <Link className="navbar__link" to="/">
+            {" "}
+            Logout{" "}
+          </Link>
+        </li>
+      ) : (
+        <li className="navbar__item">
+          <Link className="navbar__link" to="/login">
+            Login
+          </Link>
+        </li>
+      )}
+    </ul>
+  );
+};
